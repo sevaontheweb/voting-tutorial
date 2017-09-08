@@ -108,50 +108,38 @@ describe('application logic', () => {
 
 
     describe('vote', () => {
-        it('create voting result for active record', () => {
+        it('creates voting result for active record', () => {
             const state = Map({
-                vote: Map({
-                    pair: List.of('Trainspotting', '28 Days Later'),
-                }),
-                entries: List()
+                pair: List.of('Trainspotting', '28 Days Later'),
             });
 
             const nextState = vote(state, 'Trainspotting');
             
             expect(nextState).to.equal(Map({
-                vote: Map({
-                    pair: List.of('Trainspotting', '28 Days Later'),
-                    tally: Map({
-                        'Trainspotting': 1
-                    })
-                }),
-                entries: List()
+                pair: List.of('Trainspotting', '28 Days Later'),
+                tally: Map({
+                    'Trainspotting': 1
+                })
             }));
         });
 
-        it('add the voting result for picked record to the existing results', () => {
+        it('adds the voting result for picked record to the existing results', () => {
             const state = Map({
-                vote: Map({
-                    pair: List.of('Trainspotting', '28 Days Later'),
-                    tally: Map({
-                        'Trainspotting': 3,
-                        '28 Days Later': 2
-                    })
-                }),
-                entries: List()
+                pair: List.of('Trainspotting', '28 Days Later'),
+                tally: Map({
+                    'Trainspotting': 3,
+                    '28 Days Later': 2
+                })
             });
 
             const nextState = vote(state, 'Trainspotting');
             
             expect(nextState).to.equal(Map({
-                vote: Map({
-                    pair: List.of('Trainspotting', '28 Days Later'),
-                    tally: Map({
-                        'Trainspotting': 4,
-                        '28 Days Later': 2
-                    })
-                }),
-                entries: List()
+                pair: List.of('Trainspotting', '28 Days Later'),
+                tally: Map({
+                    'Trainspotting': 4,
+                    '28 Days Later': 2
+                })
             }));
         });
     });
